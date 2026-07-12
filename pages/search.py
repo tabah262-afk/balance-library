@@ -4,7 +4,6 @@ def show():
 
     st.title("🔍 Search")
 
-    keyword=st.text_input("Cari Buku")
+    st.text_input("Cari judul buku, penulis, atau kategori")
 
-    if keyword:
-        st.write("Hasil pencarian akan muncul disini.")
+    st.info("Hasil pencarian akan muncul di sini.")

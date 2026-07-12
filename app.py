@@ -1,7 +1,14 @@
 import streamlit as st
 
+# IMPORT NAVBAR
 from components.navbar import show as show_navbar
+
+# IMPORT HALAMAN
 from pages.home import show as show_home
+from pages.search import show as show_search
+from pages.katalog import show as show_katalog
+from pages.my_books import show as show_mybooks
+from pages.profil import show as show_profil
 
 # ==========================
 # Konfigurasi Halaman
@@ -76,7 +83,27 @@ div[data-testid="stAlert"]{
 </style>
 """, unsafe_allow_html=True)
 
+# ==========================
+# NAVBAR
+# ==========================
+
 menu = show_navbar()
+
+# ==========================
+# ROUTING HALAMAN
+# ==========================
 
 if menu == "🏠 Home":
     show_home()
+
+elif menu == "🔍 Search":
+    show_search()
+
+elif menu == "📚 Katalog":
+    show_katalog()
+
+elif menu == "📖 My Books":
+    show_mybooks()
+
+elif menu == "👤 Profil":
+    show_profil()
