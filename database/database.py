@@ -1,3 +1,4 @@
+import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -10,8 +11,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = Credentials.from_service_account_file(
-    "database/credentials.json",
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
     scopes=SCOPES
 )
 
@@ -47,5 +48,3 @@ def get_categories():
 
 def get_mybooks():
     return mybooks_sheet.get_all_records()
-
-print(get_books())
