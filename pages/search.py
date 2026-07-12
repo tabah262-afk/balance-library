@@ -1,5 +1,8 @@
 import streamlit as st
-from database.database import get_books
+from database.database import (
+    get_books,
+    save_mybook
+)
 
 def show():
 
@@ -72,10 +75,20 @@ def show():
                 c1, c2 = st.columns(2)
 
                 with c1:
-                    st.button(
-                        "⭐ Simpan",
-                        key=f"search_{book['ID Buku']}"
-                    )
+                    if st.button(
+                        "🔖 Simpan",
+                        key=f"simpan_{book['ID Buku']}"
+                    ):
+                        
+                        berhasil = save_mybook(
+                            "U001", 
+                            book["ID Buku"]
+                        )
+
+                        if berhasil:
+                            st.success("Buku berhasil disimpan.")
+                        else:
+                            st.warning("Buku sudah ada di My Books.")
 
                 with c2:
                     st.link_button(
