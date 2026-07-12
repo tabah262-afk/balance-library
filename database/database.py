@@ -1,20 +1,23 @@
+import os
 import streamlit as st
 import gspread
 from google.oauth2.service_account import Credentials
-
-# ==========================
-# Konfigurasi Google Sheets
-# ==========================
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = Credentials.from_service_account_file(
-    "database/credentials.json",
-    scopes=SCOPES
-)
+if os.path.exists("database/credentials.json"):
+    creds = Credentials.from_service_account_file(
+        "database/credentials.json",
+        scopes=SCOPES
+    )
+else:
+    creds = Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"],
+        scopes=SCOPES
+    )
 
 
 client = gspread.authorize(creds)
