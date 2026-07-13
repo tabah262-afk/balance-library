@@ -51,7 +51,7 @@ def show():
             with col1:
 
                 if book["Cover"] != "-":
-                    st.image(book["Cover"], width=120)
+                    st.image(book["Cover"], width=200)
                 else:
                     st.image(
                         "https://placehold.co/180x250?text=No+Cover",
@@ -79,7 +79,7 @@ def show():
                         key=f"simpan_{book['ID Buku']}"
                     ):
                         berhasil = save_mybook(
-                            "U001", 
+                            st.session_state.user["ID"], 
                             book["ID Buku"]
                         )
 

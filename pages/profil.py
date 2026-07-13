@@ -1,15 +1,24 @@
 import streamlit as st
 
+
 def show():
 
     st.title("👤 Profil")
 
-    st.write("Silakan masuk untuk menggunakan fitur aplikasi.")
+    user = st.session_state.user
 
-    col1, col2 = st.columns(2)
+    st.subheader(user["Nama"])
 
-    with col1:
-        st.button("Sign In")
+    st.write(f"📧 **Email :** {user['Email']}")
+    st.write(f"🛡️ **Role :** {user['Role']}")
+    st.write(f"📅 **Tanggal Daftar :** {user['Tanggal Daftar']}")
 
-    with col2:
-        st.button("Sign Up")
+    st.divider()
+
+    if st.button("🚪 Logout", type="primary"):
+
+        st.session_state.logged_in = False
+        st.session_state.user = None
+        st.session_state.show_register = False
+
+        st.rerun()

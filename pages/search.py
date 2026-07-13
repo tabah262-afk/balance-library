@@ -81,7 +81,7 @@ def show():
                     ):
                         
                         berhasil = save_mybook(
-                            "U001", 
+                            st.session_state.user["ID"], 
                             book["ID Buku"]
                         )
 

@@ -10,6 +10,12 @@ from pages.katalog import show as show_katalog
 from pages.my_books import show as show_mybooks
 from pages.profil import show as show_profil
 
+# IMPORT AUTH
+from utils.auth import (
+    login_page,
+    register_page
+)   
+
 # ==========================
 # Konfigurasi Halaman
 # ==========================
@@ -18,6 +24,19 @@ st.set_page_config(
     page_icon="📚",
     layout="wide"
 )
+
+# ==========================
+# Session Login
+# ==========================
+
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if "user" not in st.session_state:
+    st.session_state.user = None
+
+if "show_register" not in st.session_state:
+    st.session_state.show_register = False
 
 # ==========================
 # Custom CSS
@@ -82,6 +101,19 @@ div[data-testid="stAlert"]{
                         
 </style>
 """, unsafe_allow_html=True)
+
+# ==========================
+# Login Check
+# ==========================
+
+if not st.session_state.logged_in:
+
+    if st.session_state.show_register:
+        register_page()
+    else:
+        login_page()
+
+    st.stop()
 
 # ==========================
 # NAVBAR

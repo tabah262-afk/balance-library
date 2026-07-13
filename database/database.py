@@ -74,3 +74,81 @@ def save_mybook(id_user, id_buku):
     ])
 
     return True
+
+def get_user_mybooks(id_user):
+
+    data = mybooks_sheet.get_all_records()
+
+    hasil = []
+
+    for row in data:
+        if row["ID User"] == id_user:
+            hasil.append(row)
+
+    return hasil
+
+def get_book_by_id(id_buku):
+
+    books = books_sheet.get_all_records()
+
+    for book in books:
+        if book["ID Buku"] == id_buku:
+            return book
+
+    return None
+
+def delete_mybook(id_user, id_buku):
+
+    data = mybooks_sheet.get_all_records()
+
+    for i, row in enumerate(data, start=2):
+
+        if row["ID User"] == id_user and row["ID Buku"] == id_buku:
+
+            mybooks_sheet.delete_rows(i)
+
+            return True
+
+    return False
+
+# ==========================
+# Tambah User Baru
+# ==========================
+
+def add_user(nama, email, password):
+
+    users = users_sheet.get_all_records()
+
+    # Cek apakah email sudah digunakan
+    for user in users:
+        if user["Email"].lower() == email.lower():
+            return False
+
+    # Membuat ID baru
+    new_id = f"U{len(users)+1:03d}"
+
+    users_sheet.append_row([
+        new_id,
+        nama,
+        email,
+        password,
+        "User",
+        "Aktif",
+        datetime.now().strftime("%d/%m/%Y")
+    ])
+
+    return True
+
+def login_user(email, password):
+
+    users = users_sheet.get_all_records()
+
+    for user in users:
+
+        if (
+            user["Email"].lower() == email.lower()
+            and user["Password"] == password
+        ):
+            return user
+
+    return None
