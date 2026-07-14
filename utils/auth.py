@@ -6,55 +6,82 @@ from database.database import (
 
 def login_page():
 
-    st.title("📚 Balance Library")
+    st.container(border=True)
+    
+    # Kolom kiri - tengah - kanan
+    kiri, tengah, kanan = st.columns([1, 2, 1])
 
-    st.subheader("Sign In")
+    with tengah:
 
-    email = st.text_input("Email")
+        # Logo
+        logo1, logo2, logo3 = st.columns([1,2,1])
 
-    password = st.text_input(
-        "Password",
-        type="password"
-    )
-
-    if st.button("Login"):
-
-        if email == "" or password == "":
-            st.warning("Email dan password wajib diisi.")
-
-        else:
-
-            user = login_user(
-                email,
-                password
+        with logo2:
+            st.image(
+                "assets/logo.png",
+                width=140
             )
 
-            if user is None:
+        st.markdown(
+            """
+            <h2 style="text-align:center;">
+            Balance Library
+            </h2>
+            """,
+            unsafe_allow_html=True
+        )
 
-                st.error(
-                    "Email atau password salah.\n\n"
-                    "Jika belum memiliki akun, silakan Sign Up terlebih dahulu."
-                )
+        st.markdown(
+            """
+            <p style="text-align:center;color:gray;">
+            Smart Reading Starts Here
+            </p>
+            """,
+            unsafe_allow_html=True
+        )
 
-            else:
+        st.divider()
+
+        email = st.text_input(
+            "📧 Email"
+        )
+
+        password = st.text_input(
+            "🔒 Password",
+            type="password"
+        )
+
+        if st.button(
+            "Login",
+            use_container_width=True
+        ):
+
+            user = login_user(email, password)
+
+            if user:
 
                 st.session_state.logged_in = True
-
                 st.session_state.user = user
-
-                st.success("Login berhasil!")
+                st.session_state.user_id = user["ID"]
 
                 st.rerun()
 
-    st.divider()
+            else:
+                st.error("Email atau Password salah.")
 
-    st.write("Belum punya akun?")
+        st.divider()
 
-    if st.button("Sign Up"):
+        st.markdown(
+            "<p style='text-align:center;'>Belum punya akun?</p>",
+            unsafe_allow_html=True
+        )
 
-        st.session_state.show_register = True
-
-        st.rerun()
+        if st.button(
+            "Daftar Sekarang",
+            use_container_width=True
+        ):
+            st.session_state.show_register = True
+            st.rerun()
 
 def register_page():
 
