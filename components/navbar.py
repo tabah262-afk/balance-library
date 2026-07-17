@@ -9,16 +9,24 @@ def show():
 
     st.sidebar.divider()
 
+    if "menu" not in st.session_state:
+        st.session_state.menu = "🏠 Home"
+
+    menu_list = [
+        "🏠 Home",
+        "🔍 Search",
+        "📚 Katalog",
+        "📖 My Books",
+        "👤 Profil"
+    ]
+
     menu = st.sidebar.radio(
         "Menu",
-        [
-            "🏠 Home",
-            "🔍 Search",
-            "📚 Katalog",
-            "📖 My Books",
-            "👤 Profil"
-        ]
+        menu_list,
+        index=menu_list.index(st.session_state.menu)
     )
+
+    st.session_state.menu = menu
 
     st.sidebar.divider()
 

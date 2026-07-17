@@ -58,7 +58,7 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
                     key="home_search"
                 ):
 
-                    st.session_state["menu"] = "🔍 Search"
+                    st.session_state.menu = "🔍 Search"
                     st.rerun()
 
         with col2:
@@ -79,7 +79,7 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
                     key="home_katalog"
                 ):
 
-                    st.session_state["menu"] = "📚 Katalog"
+                    st.session_state.menu = "📚 Katalog"
                     st.rerun()
 
         with col3:
@@ -100,7 +100,7 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
                     key="home_mybooks"
                 ):
 
-                    st.session_state["menu"] = "📖 My Books"
+                    st.session_state.menu = "📖 My Books"
                     st.rerun()
 
         with col4:
@@ -123,5 +123,5 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
                     key="home_profile"
                 ):
 
-                    st.session_state["menu"] = "👤 Profil"
+                    st.session_state.menu = "👤 Profil"
                     st.rerun()
