@@ -184,3 +184,16 @@ def search_books(keyword):
             hasil.append(book)
 
     return hasil
+
+# ==========================
+# Buku Terbaru
+# ==========================
+
+def latest_books():
+
+    books = get_books()
+
+    if len(books) >= 2:
+        return books[-2:][::-1]
+
+    return books
