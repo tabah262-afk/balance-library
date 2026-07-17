@@ -11,6 +11,10 @@ def show():
     jumlah_buku = total_books()
     jumlah_kategori = total_categories()
 
+    mybooks = get_user_mybooks(
+        st.session_state.user_id
+    )
+
     kiri, tengah, kanan = st.columns([2,1,2])
 
     with tengah:
@@ -79,19 +83,45 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
                     st.rerun()
 
         with col3:
-            if st.button(
-                "🔍 Cari Buku",
-                use_container_width=True,
-                key="home_search"
-            ):
-                st.session_state.menu = "🔍 Search"
-                st.rerun()
+
+            with st.container(border=True):
+
+                st.markdown("## 📖 My Books")
+
+                st.write(
+                    "Semua buku favoritmu ada di sini."
+                )
+
+                st.info(f"⭐ {len(mybooks)} buku tersimpan")
+
+                if st.button(
+                    "Lihat Buku",
+                    use_container_width=True,
+                    key="home_mybooks"
+                ):
+
+                    st.session_state["menu"] = "📖 My Books"
+                    st.rerun()
 
         with col4:
-            if st.button(
-                "👤 Profil",
-                use_container_width=True,
-                key="home_profil"
-            ):
-                st.session_state.menu = "👤 Profil"
-                st.rerun()
+
+            with st.container(border=True):
+
+                st.markdown("## 👤 Profil")
+
+                st.write(
+                    "Kelola akun Balance Library."
+                )
+
+                st.info(
+                    f"👋 Halo, {st.session_state.user['Nama']}"
+                )
+
+                if st.button(
+                    "Lihat Profil",
+                    use_container_width=True,
+                    key="home_profile"
+                ):
+
+                    st.session_state["menu"] = "👤 Profil"
+                    st.rerun()
