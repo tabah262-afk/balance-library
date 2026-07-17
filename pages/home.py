@@ -1,6 +1,15 @@
 import streamlit as st
 
+from database.database import (
+    total_books,
+    total_categories,
+    get_user_mybooks
+)
+
 def show():
+
+    jumlah_buku = total_books()
+    jumlah_kategori = total_categories()
 
     kiri, tengah, kanan = st.columns([2,1,2])
 
@@ -28,22 +37,46 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            if st.button(
-                "📚 Jelajahi",
-                use_container_width=True,
-                key="home_katalog"
-            ):
-                st.session_state.menu = "📚 Katalog"
-                st.rerun()
+
+            with st.container(border=True):
+
+                st.markdown("## 🔍 Search")
+
+                st.write(
+                    "Cari buku dengan cepat."
+                )
+
+                st.info(f"📚 {jumlah_buku} buku tersedia")
+
+                if st.button(
+                    "Cari Buku",
+                    use_container_width=True,
+                    key="home_search"
+                ):
+
+                    st.session_state["menu"] = "🔍 Search"
+                    st.rerun()
 
         with col2:
-            if st.button(
-                "❤️ Lihat",
-                use_container_width=True,
-                key="home_mybooks"
-            ):
-                st.session_state.menu = "📖 My Books"
-                st.rerun()
+
+            with st.container(border=True):
+
+                st.markdown("## 📚 Katalog")
+
+                st.write(
+                    "Jelajahi seluruh koleksi ebook."
+                )
+
+                st.info(f"📖 {jumlah_kategori} kategori buku")
+
+                if st.button(
+                    "Buka Katalog",
+                    use_container_width=True,
+                    key="home_katalog"
+                ):
+
+                    st.session_state["menu"] = "📚 Katalog"
+                    st.rerun()
 
         with col3:
             if st.button(
