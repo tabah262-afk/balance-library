@@ -2,11 +2,15 @@ import streamlit as st
 
 def show():
 
-    col1, col2, col3 = st.columns([1,2,1])
+    kiri, tengah, kanan = st.columns([2,1,2])
 
-    with col2:
+    with tengah:
 
-        st.image("assets/logo.png", width=180)
+        with tengah:
+            st.image(
+                "assets/logo.png",
+                use_container_width=True
+            )
 
         st.title("Balance Library")
 

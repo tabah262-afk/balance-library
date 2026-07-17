@@ -21,7 +21,7 @@ from utils.auth import (
 # ==========================
 st.set_page_config(
     page_title="Balance Library",
-    page_icon="📚",
+    page_icon="assets/logo.png",
     layout="wide"
 )
 
