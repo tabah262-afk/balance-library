@@ -31,10 +31,13 @@ def show():
 
     with tengah:
 
-        st.image(
-            "assets/logo.png",
-            width=180
-        )
+        logo1, logo2, logo3 = st.columns([1,2,1])
+
+        with logo2:
+            st.image(
+                "assets/logo.png",
+                use_container_width=True
+            )
 
         st.markdown(
             f"""
@@ -53,6 +56,16 @@ def show():
             """,
             unsafe_allow_html=True
         )
+
+    st.markdown(
+        """
+        <p style="text-align:center;color:gray;">
+        Balance Library membantu pengguna menemukan,
+        membaca, dan mengelola koleksi ebook dengan mudah.
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.divider()
 
