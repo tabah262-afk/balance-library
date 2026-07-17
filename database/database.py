@@ -152,3 +152,14 @@ def login_user(email, password):
             return user
 
     return None
+
+# ==========================
+# Statistik Dashboard
+# ==========================
+
+def total_books():
+    return len(get_books())
+
+
+def total_categories():
+    return len(get_categories())
