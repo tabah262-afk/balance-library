@@ -15,12 +15,12 @@ def login_page():
         with st.container(border=True):
 
             # Logo
-            logo1, logo2, logo3 = st.columns([1,2,1])
+            kiri_logo, tengah_logo, kanan_logo = st.columns([3,2,3])
 
-            with logo2:
+            with tengah_logo:
                 st.image(
                     "assets/logo.png",
-                    width=140
+                    use_container_width=True
                 )
 
             st.markdown(
