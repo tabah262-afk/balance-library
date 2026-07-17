@@ -6,82 +6,83 @@ from database.database import (
 
 def login_page():
 
-    st.container(border=True)
-    
     # Kolom kiri - tengah - kanan
     kiri, tengah, kanan = st.columns([1, 2, 1])
 
     with tengah:
 
-        # Logo
-        logo1, logo2, logo3 = st.columns([1,2,1])
+        # Card Login
+        with st.container(border=True):
 
-        with logo2:
-            st.image(
-                "assets/logo.png",
-                width=140
+            # Logo
+            logo1, logo2, logo3 = st.columns([1,2,1])
+
+            with logo2:
+                st.image(
+                    "assets/logo.png",
+                    width=140
+                )
+
+            st.markdown(
+                """
+                <h2 style="text-align:center;">
+                Balance Library
+                </h2>
+                """,
+                unsafe_allow_html=True
             )
 
-        st.markdown(
-            """
-            <h2 style="text-align:center;">
-            Balance Library
-            </h2>
-            """,
-            unsafe_allow_html=True
-        )
+            st.markdown(
+                """
+                <p style="text-align:center;color:gray;">
+                Smart Reading Starts Here
+                </p>
+                """,
+                unsafe_allow_html=True
+            )
 
-        st.markdown(
-            """
-            <p style="text-align:center;color:gray;">
-            Smart Reading Starts Here
-            </p>
-            """,
-            unsafe_allow_html=True
-        )
+            st.divider()
 
-        st.divider()
+            email = st.text_input(
+                "📧 Email"
+            )
 
-        email = st.text_input(
-            "📧 Email"
-        )
+            password = st.text_input(
+                "🔒 Password",
+                type="password"
+            )
 
-        password = st.text_input(
-            "🔒 Password",
-            type="password"
-        )
+            if st.button(
+                "Login",
+                use_container_width=True
+            ):
 
-        if st.button(
-            "Login",
-            use_container_width=True
-        ):
+                user = login_user(email, password)
 
-            user = login_user(email, password)
+                if user:
 
-            if user:
+                    st.session_state.logged_in = True
+                    st.session_state.user = user
+                    st.session_state.user_id = user["ID"]
 
-                st.session_state.logged_in = True
-                st.session_state.user = user
-                st.session_state.user_id = user["ID"]
+                    st.rerun()
 
+                else:
+                    st.error("Email atau Password salah.")
+
+            st.divider()
+
+            st.markdown(
+                "<p style='text-align:center;'>Belum punya akun?</p>",
+                unsafe_allow_html=True
+            )
+
+            if st.button(
+                "Daftar Sekarang",
+                use_container_width=True
+            ):
+                st.session_state.show_register = True
                 st.rerun()
-
-            else:
-                st.error("Email atau Password salah.")
-
-        st.divider()
-
-        st.markdown(
-            "<p style='text-align:center;'>Belum punya akun?</p>",
-            unsafe_allow_html=True
-        )
-
-        if st.button(
-            "Daftar Sekarang",
-            use_container_width=True
-        ):
-            st.session_state.show_register = True
-            st.rerun()
 
 def register_page():
 
