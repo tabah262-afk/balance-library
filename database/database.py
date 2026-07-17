@@ -163,3 +163,24 @@ def total_books():
 
 def total_categories():
     return len(get_categories())
+
+# ==========================
+# Search Buku
+# ==========================
+
+def search_books(keyword):
+
+    books = get_books()
+
+    if keyword == "":
+        return []
+
+    hasil = []
+
+    for book in books:
+
+        if keyword.lower() in book["Judul"].lower():
+
+            hasil.append(book)
+
+    return hasil
