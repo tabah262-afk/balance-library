@@ -25,25 +25,40 @@ pengguna menemukan, membaca, dan mengelola koleksi buku dengan mudah.
 
         st.divider()
 
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            with st.container(border=True):
-                st.markdown("## 📚")
-                st.subheader("Katalog Buku")
-                st.caption("Jelajahi seluruh koleksi buku digital.")
-                st.button("Buka", key="katalog")
+            if st.button(
+                "📚 Jelajahi",
+                use_container_width=True,
+                key="home_katalog"
+            ):
+                st.session_state.menu = "📚 Katalog"
+                st.rerun()
 
         with col2:
-            with st.container(border=True):
-                st.markdown("## 📖")
-                st.subheader("My Books")
-                st.caption("Lihat buku yang telah kamu simpan.")
-                st.button("Buka", key="mybooks")
+            if st.button(
+                "❤️ Lihat",
+                use_container_width=True,
+                key="home_mybooks"
+            ):
+                st.session_state.menu = "📖 My Books"
+                st.rerun()
 
         with col3:
-            with st.container(border=True):
-                st.markdown("## 👤")
-                st.subheader("Profil")
-                st.caption("Login dan kelola akun pengguna.")
-                st.button("Masuk", key="profil")
+            if st.button(
+                "🔍 Cari Buku",
+                use_container_width=True,
+                key="home_search"
+            ):
+                st.session_state.menu = "🔍 Search"
+                st.rerun()
+
+        with col4:
+            if st.button(
+                "👤 Profil",
+                use_container_width=True,
+                key="home_profil"
+            ):
+                st.session_state.menu = "👤 Profil"
+                st.rerun()
