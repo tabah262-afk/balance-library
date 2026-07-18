@@ -2,10 +2,28 @@ import streamlit as st
 
 def show():
 
-    st.sidebar.image("assets/logo.png", width=120)
+    # ==========================
+    # LOGO
+    # ==========================
 
-    st.sidebar.markdown("## Balance Library")
-    st.sidebar.caption("Smart Reading Starts Here")
+    kiri, tengah, kanan = st.sidebar.columns([1,2,1])
+
+    with tengah:
+        st.image(
+            "assets/logo.png",
+            use_container_width=True
+        )
+
+    st.sidebar.markdown("")
+
+    st.sidebar.markdown(
+        f"""
+        <h4 style="text-align:center;">
+            👋 Halo, {st.session_state.user["Nama"]}
+        </h4>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.sidebar.divider()
 
