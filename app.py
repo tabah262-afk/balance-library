@@ -79,6 +79,29 @@ section[data-testid="stSidebar"]{
     background-color:#EAF2FF;
 }
 
+/* ==========================
+   Menu Sidebar
+========================== */
+
+section[data-testid="stSidebar"] [data-baseweb="radio"] label{
+    border-radius:10px;
+    padding:8px 12px;
+    margin-bottom:6px;
+    transition:0.2s;
+}
+
+/* Hover menu */
+section[data-testid="stSidebar"] [data-baseweb="radio"] label:hover{
+    background-color:#D6E4FF;
+}
+
+/* Menu aktif */
+section[data-testid="stSidebar"] [data-baseweb="radio"] label:has(input:checked){
+    background-color:#BFDBFE;
+    color:#1E3A8A;
+    font-weight:bold;
+}            
+
 /* Hilangkan menu bawaan */
 [data-testid="stSidebarNav"]{
     display:none;
